@@ -82,6 +82,16 @@ When adding new simulations:
 - Follow the established directory structure
 - Adhere to responsible disclosure practices outlined in the Security section
 
+### Claude Code
+
+This repository is designed to leverage Claude Code for automating repetitive or menial tasks. Contributors are encouraged to:
+
+- Update `CLAUDE.md` when adding new features or aiming to improve the contributing experience
+- Use Claude Code to help with file organization, template generation, and documentation tasks
+- Ensure all AI-generated content is fully reviewed by the human contributor before submitting a PR
+
+**Important:** We strongly oppose adding verbose, unnecessary "AI slop" to this repository. All content must be concise, technically accurate, and provide genuine value.
+
 ---
 
 *This project supports the ongoing effort to strengthen Ethereum client implementations and improve network resilience against adverse conditions and attacks.*
