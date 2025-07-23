@@ -24,8 +24,12 @@ simulations/
 │   ├── runs/                   # Individual test executions
 │   │   ├── run-001/
 │   │   │   ├── description.md  # Detailed run parameters
-│   │   │   ├── logs/          # Client logs and data
-│   │   │   └── issues.md      # Discovered issues and resolutions
+│   │   │   └── incidents/      # Issues discovered during run
+│   │   │       ├── incident-title/
+│   │   │       │   ├── description.md
+│   │   │       │   └── [logs, screenshots, etc.]
+│   │   │       └── another-incident/
+│   │   │           └── ...
 │   │   └── run-002/
 │   │       └── ...
 │   └── mitigations/           # (Future) Implemented hardening measures
@@ -44,12 +48,12 @@ Each simulation begins with a clear specification that includes:
 #### Runs (`runs/`)
 Individual executions of a simulation, each containing:
 - **Description** (`description.md`): Specific parameters including client distribution, network topology, timing, and environmental conditions
-- **Logs** (`logs/`): Raw client outputs, network captures, and monitoring data
-- **Issues** (`issues.md`): Documented problems discovered during the run, including:
-  - Issue descriptions and impact assessment
+- **Incidents** (`incidents/`): Directory containing individual issues discovered during the run, where each incident has its own subdirectory with:
+  - Issue description and impact assessment
   - Root cause analysis
   - Resolution steps taken
   - Client-specific behaviors observed
+  - Supporting materials (logs, screenshots, network captures, etc.)
 
 #### Mitigations (`mitigations/`)
 *Future component* - Documented hardening measures developed in response to simulation findings:
@@ -60,9 +64,10 @@ Individual executions of a simulation, each containing:
 ## Getting Started
 
 1. Browse existing simulations in the `simulations/` directory
-2. Review simulation definitions to understand the test scenarios
-3. Examine run results to see real-world client behavior under stress
-4. Contribute new simulations or run variations of existing ones
+2. Start with the [`example-simulation`](simulations/example-simulation/) to understand the repository structure
+3. Review simulation definitions to understand the test scenarios
+4. Examine run results to see real-world client behavior under stress
+5. Contribute new simulations or run variations of existing ones
 
 ## Security
 
