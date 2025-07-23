@@ -64,6 +64,15 @@ Individual executions of a simulation, each containing:
 3. Examine run results to see real-world client behavior under stress
 4. Contribute new simulations or run variations of existing ones
 
+## Security
+
+This repository practices responsible disclosure for any bugs or vulnerabilities discovered during simulations. **Do not make public any security issues until the owners or maintainers of the affected software have given explicit permission.** 
+
+When documenting findings:
+- Sanitize logs and remove any sensitive information
+- Avoid publishing detailed attack vectors or exploits
+- Coordinate with client teams before including vulnerability details
+
 ## Contributing
 
 When adding new simulations:
@@ -71,6 +80,7 @@ When adding new simulations:
 - Document all parameters and environmental conditions
 - Provide clear analysis of results and findings
 - Follow the established directory structure
+- Adhere to responsible disclosure practices outlined in the Security section
 
 ---
 
