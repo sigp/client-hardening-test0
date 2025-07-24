@@ -89,6 +89,10 @@ This repository is designed to leverage Claude Code for automating repetitive or
 
 **Important:** We strongly oppose adding verbose, unnecessary "AI slop" to this repository. All content must be concise, technically accurate, and provide genuine value.
 
+#### Human-First Design
+
+The repository should always remain usable **without an LLM**. We should design first for humans, then use LLMs to automate on top of that.
+
 ---
 
 *This project supports the ongoing effort to strengthen Ethereum client implementations and improve network resilience against adverse conditions and attacks.*

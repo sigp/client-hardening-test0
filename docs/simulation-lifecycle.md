@@ -1,6 +1,6 @@
 # Simulation Lifecycle
 
-This document outlines the workflow for creating, executing, and documenting Ethereum client hardening simulations. The process is designed to maximize ease of use while enabling natural collaboration between researchers and client teams.
+This document outlines the workflow for creating, executing, and documenting Ethereum client hardening simulations. The process is designed to maximize ease of use while enabling natural collaboration between testers and client teams.
 
 ## Overview
 
@@ -12,20 +12,15 @@ The simulation lifecycle consists of three main phases:
 
 ## Phase 1: Simulation Creation
 
-Simulations are created once and can be reused for multiple runs. This is typically done by researchers defining new test scenarios.
+Simulations are created once and can be reused for multiple runs. This is typically done by testers defining new test scenarios.
+
+For example, we might create a standard non-finality scenario and the re-run it after big client updates (e.g. hard-fork).
 
 You can create simulations manually by setting up the directory structure and writing the definition, or use Claude commands for assistance:
 
 ```bash
 claude create simulation "non-finality over 3 epochs"
 ```
-
-Each simulation includes:
-- **Objective** - What the simulation aims to test
-- **Scope** - Which client behaviors are examined
-- **Expected behaviors** - How clients should respond
-- **Success criteria** - How to measure success
-
 ## Phase 2: Run Execution
 
 When you want to execute a simulation run, create a GitHub PR that tracks the entire run lifecycle.
@@ -35,45 +30,23 @@ When you want to execute a simulation run, create a GitHub PR that tracks the en
 Create a run either manually or with Claude assistance:
 
 ```bash
-claude start run "example-simulation" --duration "2 hours" --clients "lighthouse,prysm"
+claude create run "example-simulation"
 ```
-
-The run PR serves as the central hub and includes:
-- **Run parameters** - Duration, client distribution, timing
-- **Status checklist** - Track progress from start to completion
-- **Incident links** - Reference to any issues discovered
-- **Results summary** - Final outcomes and findings
-
-### Run Tracking
-
-Each run PR maintains a checklist to track progress:
-- [ ] Run parameters defined
-- [ ] Infrastructure prepared
-- [ ] Run executed
-- [ ] Incidents documented
-- [ ] Final summary completed
 
 ## Phase 3: Incident Management
 
-When issues are discovered during a run, they become GitHub Issues for collaborative investigation.
+When issues are discovered during a run, create GitHub Issues for collaborative investigation.
 
 ### Creating Incidents
 
 ```bash
-claude create incident "lighthouse node failed to sync" --client lighthouse
+claude create incident "lighthouse node failed to sync" for the latest run in "example-simulation"
 ```
-
-Each incident issue includes:
-- **Summary** - Brief description of the problem
-- **Run context** - Link to the run PR and environment details
-- **Timeline** - Chronological sequence of events
-- **Impact assessment** - Scope and severity of the issue
-- **Investigation space** - Collaborative area for analysis
 
 ### Collaboration
 
 - **Client teams** can comment directly on incident issues
-- **Researchers** share logs, analysis, and findings
+- **Testers** share logs, analysis, and findings
 - **Issues remain open** until fully understood and documented
 - **Large files** can be attached or linked as needed
 
@@ -82,7 +55,7 @@ Each incident issue includes:
 When the run finishes, update the PR with final results and merge to preserve the complete history.
 
 ```bash
-claude complete run --summary "Network recovered with 2 incidents discovered"
+claude complete the latest "example-simulation" run. The summary is "Network recovered with 2 incidents discovered"
 ```
 
 The final summary includes:
@@ -92,7 +65,7 @@ The final summary includes:
 
 ## Benefits
 
-### For Researchers
+### For Testers
 - **Low friction** - Start runs immediately without bureaucracy
 - **Organized** - All run information centralized in one PR
 - **Trackable** - Clear progress through checklists
