@@ -8,7 +8,6 @@ The Ethereum network's security and stability depend on the robustness of client
 
 - Identify vulnerabilities and edge cases in client behavior
 - Document recovery mechanisms and failure modes
-- Develop and validate mitigation strategies
 - Strengthen the overall resilience of the Ethereum ecosystem
 
 This effort focuses specifically on client implementation resilience and purposely avoids duplicating existing efforts by tracking or documenting protocol-level vulnerabilities or improvements (see [ethereum/consensus-specs](https://github.com/ethereum/consensus-specs)).
@@ -21,19 +20,17 @@ Each simulation is organized into the following structure:
 simulations/
 ├── simulation-name/
 │   ├── definition.md           # Simulation specification
-│   ├── runs/                   # Individual test executions
-│   │   ├── run-001/
-│   │   │   ├── description.md  # Detailed run parameters
-│   │   │   └── incidents/      # Issues discovered during run
-│   │   │       ├── incident-title/
-│   │   │       │   ├── description.md
-│   │   │       │   └── [logs, screenshots, etc.]
-│   │   │       └── another-incident/
-│   │   │           └── ...
-│   │   └── run-002/
-│   │       └── ...
-│   └── mitigations/           # (Future) Implemented hardening measures
-│       └── ...
+│   └── runs/                   # Individual test executions
+│       ├── run-001/
+│       │   ├── description.md  # Detailed run parameters
+│       │   └── incidents/      # Issues discovered during run
+│       │       ├── incident-title/
+│       │       │   ├── description.md
+│       │       │   └── [logs, screenshots, etc.]
+│       │       └── another-incident/
+│       │           └── ...
+│       └── run-002/
+│           └── ...
 ```
 
 ### Simulation Components
@@ -55,11 +52,6 @@ Individual executions of a simulation, each containing:
   - Client-specific behaviors observed
   - Supporting materials (logs, screenshots, network captures, etc.)
 
-#### Mitigations (`mitigations/`)
-*Future component* - Documented hardening measures developed in response to simulation findings:
-- Code changes and configuration updates
-- Operational procedures and monitoring improvements
-- Network-level defenses and recovery mechanisms
 
 ## Getting Started
 
