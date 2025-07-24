@@ -1,0 +1,118 @@
+# Simulation Lifecycle
+
+This document outlines the workflow for creating, executing, and documenting Ethereum client hardening simulations. The process is designed to maximize ease of use while enabling natural collaboration between researchers and client teams.
+
+## Overview
+
+The simulation lifecycle consists of three main phases:
+
+1. **Simulation Creation** - One-time setup of the simulation definition
+2. **Run Execution** - Individual test runs managed via GitHub PRs
+3. **Incident Management** - Collaborative issue resolution via GitHub Issues
+
+## Phase 1: Simulation Creation
+
+Simulations are created once and can be reused for multiple runs. This is typically done by researchers defining new test scenarios.
+
+You can create simulations manually by setting up the directory structure and writing the definition, or use Claude commands for assistance:
+
+```bash
+claude create simulation "non-finality over 3 epochs"
+```
+
+Each simulation includes:
+- **Objective** - What the simulation aims to test
+- **Scope** - Which client behaviors are examined
+- **Expected behaviors** - How clients should respond
+- **Success criteria** - How to measure success
+
+## Phase 2: Run Execution
+
+When you want to execute a simulation run, create a GitHub PR that tracks the entire run lifecycle.
+
+### Starting a Run
+
+Create a run either manually or with Claude assistance:
+
+```bash
+claude start run "example-simulation" --duration "2 hours" --clients "lighthouse,prysm"
+```
+
+The run PR serves as the central hub and includes:
+- **Run parameters** - Duration, client distribution, timing
+- **Status checklist** - Track progress from start to completion
+- **Incident links** - Reference to any issues discovered
+- **Results summary** - Final outcomes and findings
+
+### Run Tracking
+
+Each run PR maintains a checklist to track progress:
+- [ ] Run parameters defined
+- [ ] Infrastructure prepared
+- [ ] Run executed
+- [ ] Incidents documented
+- [ ] Final summary completed
+
+## Phase 3: Incident Management
+
+When issues are discovered during a run, they become GitHub Issues for collaborative investigation.
+
+### Creating Incidents
+
+```bash
+claude create incident "lighthouse node failed to sync" --client lighthouse
+```
+
+Each incident issue includes:
+- **Summary** - Brief description of the problem
+- **Run context** - Link to the run PR and environment details
+- **Timeline** - Chronological sequence of events
+- **Impact assessment** - Scope and severity of the issue
+- **Investigation space** - Collaborative area for analysis
+
+### Collaboration
+
+- **Client teams** can comment directly on incident issues
+- **Researchers** share logs, analysis, and findings
+- **Issues remain open** until fully understood and documented
+- **Large files** can be attached or linked as needed
+
+## Phase 4: Run Completion
+
+When the run finishes, update the PR with final results and merge to preserve the complete history.
+
+```bash
+claude complete run --summary "Network recovered with 2 incidents discovered"
+```
+
+The final summary includes:
+- **Key findings** - Main observations and discoveries
+- **Incident outcomes** - Status of all issues found
+- **Next steps** - Recommended follow-up actions
+
+## Benefits
+
+### For Researchers
+- **Low friction** - Start runs immediately without bureaucracy
+- **Organized** - All run information centralized in one PR
+- **Trackable** - Clear progress through checklists
+
+### For Client Teams
+- **Natural workflow** - Standard GitHub issue collaboration
+- **Focused discussions** - Each incident has dedicated space
+- **Complete context** - Full run history available in PR
+
+### For the Project
+- **Searchable** - All incidents discoverable via GitHub search
+- **Linkable** - Easy cross-referencing between runs and incidents
+- **Scalable** - Supports many concurrent runs
+- **Transparent** - Complete audit trail of all activities
+
+## Getting Started
+
+1. **Browse existing simulations** in the `simulations/` directory
+2. **Review the example simulation** to understand the structure
+3. **Start a test run** or create a new simulation
+4. **Use Claude commands** to streamline the process
+
+For detailed automation specifications, see the `claude/` directory.
