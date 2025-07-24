@@ -12,45 +12,12 @@ The Ethereum network's security and stability depend on the robustness of client
 
 This effort focuses specifically on client implementation resilience and purposely avoids duplicating existing efforts by tracking or documenting protocol-level vulnerabilities or improvements (see [ethereum/consensus-specs](https://github.com/ethereum/consensus-specs)).
 
-## Repository Structure
+## Documentation
 
-Each simulation is organized into the following structure:
+For detailed information about this project:
 
-```
-simulations/
-├── simulation-name/
-│   ├── definition.md           # Simulation specification
-│   └── runs/                   # Individual test executions
-│       ├── run-001/
-│       │   ├── description.md  # Detailed run parameters
-│       │   └── incidents/      # Issues discovered during run
-│       │       ├── incident-title/
-│       │       │   ├── description.md
-│       │       │   └── [logs, screenshots, etc.]
-│       │       └── another-incident/
-│       │           └── ...
-│       └── run-002/
-│           └── ...
-```
-
-### Simulation Components
-
-#### Definition (`definition.md`)
-Each simulation begins with a clear specification that includes:
-- Objective and scope of the simulation
-- High-level description of the adverse condition or attack
-- Expected client behaviors and failure modes
-- Success criteria and measurement approach
-
-#### Runs (`runs/`)
-Individual executions of a simulation, each containing:
-- **Description** (`description.md`): Specific parameters including client distribution, network topology, timing, and environmental conditions
-- **Incidents** (`incidents/`): Directory containing individual issues discovered during the run, where each incident has its own subdirectory with:
-  - Issue description and impact assessment
-  - Root cause analysis
-  - Resolution steps taken
-  - Client-specific behaviors observed
-  - Supporting materials (logs, screenshots, network captures, etc.)
+- **[Repository Structure](docs/repository-structure.md)** - Directory organization and file structure
+- **[Simulation Lifecycle](docs/simulation-lifecycle.md)** - Workflow for creating and running simulations
 
 
 ## Getting Started
@@ -81,9 +48,9 @@ When adding new simulations:
 
 ### Claude Code
 
-This repository is designed to leverage Claude Code for automating repetitive or menial tasks. Contributors are encouraged to:
+This repository is designed to leverage Claude Code for automating repetitive or menial tasks. Instructions for Claude are found in [CLAUDE.md](./CLAUDE.md) and [claude/](./claude/). Contributors are encouraged to:
 
-- Update `CLAUDE.md` when adding new features or aiming to improve the contributing experience
+- Update [`CLAUDE.md`](./CLAUDE.md) and [`claude/`](./claude/) when adding new features or aiming to improve the contributing experience
 - Use Claude Code to help with file organization, template generation, and documentation tasks
 - Ensure all AI-generated content is fully reviewed by the human contributor before submitting a PR
 
@@ -91,7 +58,7 @@ This repository is designed to leverage Claude Code for automating repetitive or
 
 #### Human-First Design
 
-The repository should always remain usable **without an LLM**. We should design first for humans, then use LLMs to automate on top of that.
+The repository should always remain usable **without an LLM**.
 
 ---
 

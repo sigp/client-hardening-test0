@@ -36,6 +36,7 @@ When performing automation tasks, **always refer to the `claude/` directory firs
 
 ### Current Claude Documentation (keep this updated):
 - `claude/automation-specs.md` - Complete automation specifications for simulation lifecycle
+- `claude/repository-structure.md` - Directory structure and naming conventions for automation
 
 **Important:** Keep this list updated whenever you add new files to the `claude/` directory. This helps Claude know what documentation is available for reference.
 
