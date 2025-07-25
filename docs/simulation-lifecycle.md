@@ -19,7 +19,7 @@ For example, we might create a standard non-finality scenario and the re-run it 
 You can create simulations manually by setting up the directory structure and writing the definition, or use Claude commands for assistance:
 
 ```bash
-claude create simulation "non-finality over 3 epochs"
+claude create a new simulation called "non-finality"
 ```
 ## Phase 2: Run Execution
 
@@ -30,7 +30,7 @@ When you want to execute a simulation run, create a GitHub PR that tracks the en
 Create a run either manually or with Claude assistance:
 
 ```bash
-claude create run "example-simulation"
+claude create a run for the non-finality sim called "july-2025"
 ```
 
 ## Phase 3: Incident Management
@@ -40,7 +40,7 @@ When issues are discovered during a run, create GitHub Issues for collaborative 
 ### Creating Incidents
 
 ```bash
-claude create incident "lighthouse node failed to sync" for the latest run in "example-simulation"
+claude raise an incident that "lighthouse node failed to sync" for the latest run in "non-finality"
 ```
 
 ### Collaboration
@@ -55,7 +55,7 @@ claude create incident "lighthouse node failed to sync" for the latest run in "e
 When the run finishes, update the PR with final results and merge to preserve the complete history.
 
 ```bash
-claude complete the latest "example-simulation" run. The summary is "Network recovered with 2 incidents discovered"
+claude complete the latest "non-finality" run. The summary is "Network recovered with 2 incidents discovered"
 ```
 
 The final summary includes:
