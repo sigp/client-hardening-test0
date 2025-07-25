@@ -189,6 +189,7 @@ When the user requests to create an incident, collect the following info:
 - Always use kebab-case in tag names. Be very consistent with the use tag names, we need them to match up between PRs and issues.
 - When creating PRs and issues, sometimes you might be recreating something that was closed. Be sure that you don't mistake a closed PR/issue for a new one that you're supposed to be creating.
 - Use kebab-case whenever you need to decide. No camel-case.
+ - In templates, if there's a "Github link" to issues or a tag, format that as an actual markdown link to whatever Github resource it specifies.
 
 ## GitHub Integration
 
