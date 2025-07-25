@@ -132,10 +132,8 @@ You can infer this info from their prompt or ask for it directly.
 ```
 
 #### Complete Run
-```
-claude complete run --summary "brief summary"
-claude complete run --pr 123 --summary "Network recovered successfully with 2 incidents"
-```
+
+When the user requests to complete or finish a run, examine the `description.md` and prompt them to provide any info that's missing. Ask for any additional information they might like to provide. Don't force them to provide anything, give them the option to omit things.
 
 **Implementation:**
 - Update PR description with summary
@@ -146,22 +144,22 @@ claude complete run --pr 123 --summary "Network recovered successfully with 2 in
 ### Incident Commands
 
 #### Create Incident
-```
-claude create incident "description"
-claude create incident "lighthouse node failed to sync" --client lighthouse --severity high
-claude create incident "prysm sync delay" --client prysm --run-pr 123
-```
+
+When the user requests to create an incident, collect the following info:
+
+- `description`: a brief description
+- `affected-clients`: the clients affected
+- `severity`: a severity to assign the incident
+- `additional-details`: any specific additional details they'd like to add
 
 **Implementation:**
 - Create GitHub issue from template
 - Link to run PR automatically
-- Add labels: `type:incident`, `client:{name}`, `severity:{level}`
-- Update run PR checklist with new incident
-- Auto-assign client team members based on labels
+- Add labels: `type:incident`, `client:{name}` (for each client affected), `severity:{level}`, `incident:{simulation-name}:{run-name}`.
 
 **Template: Incident Issue**
 ```markdown
-# {Incident Title}
+# {Incident Title} - {affected-clients}
 
 ## Incident Summary
 {Brief description}
@@ -171,21 +169,16 @@ claude create incident "prysm sync delay" --client prysm --run-pr 123
 - **Simulation:** {simulation-name}
 - **Time:** {timestamp}
 - **Client:** {client-name} v{version}
-
-## Timeline
-- {time} - {event}
-- {time} - {event}
-
-## Impact
-- **Affected validators:** {count}
-- **Duration:** {duration}
 - **Network impact:** {severity}
 
-## Investigation
-*Collaborative space for analysis and findings*
+## Timeline
+*TBC*
+
+## Technical Details
+*TBC*
 
 ## Resolution
-*To be completed when incident is resolved*
+*TBC*
 ```
 
 ## GitHub Integration
