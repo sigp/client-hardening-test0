@@ -185,6 +185,7 @@ When the user requests to create an incident, collect the following info:
 
 - Before starting to make changes, check to see if the user has any uncommitted changes in their git tree. If so, alert them ask them what they'd like to do.
 - You'll frequently find that tags don't existing when you're creating issues and PRs. Create the tags when that happens.
+- Before you make changes to the repo, always make sure you're in the appropriate branch. E.g. don't start implementing a new simulation on the `main` branch.
 
 ## GitHub Integration
 
