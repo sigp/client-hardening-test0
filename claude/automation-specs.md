@@ -183,7 +183,8 @@ When the user requests to create an incident, collect the following info:
 
 ## General Details
 
-Before starting to make changes, check to see if the user has any uncommitted changes in their git tree. If so, alert them ask them what they'd like to do.
+- Before starting to make changes, check to see if the user has any uncommitted changes in their git tree. If so, alert them ask them what they'd like to do.
+- You'll frequently find that tags don't existing when you're creating issues and PRs. Create the tags when that happens.
 
 ## GitHub Integration
 
