@@ -7,7 +7,7 @@ simulations/
 ├── simulation-name/
 │   ├── definition.md           # Simulation specification
 │   └── runs/                   # Individual test executions
-│       ├── run-001/
+│       ├── 001-july-2025/
 │       │   ├── description.md  # Detailed run parameters
 │       │   └── incidents/      # Issues discovered during run
 │       │       ├── incident-title/
@@ -15,7 +15,7 @@ simulations/
 │       │       │   └── [logs, screenshots, etc.]
 │       │       └── another-incident/
 │       │           └── ...
-│       └── run-002/
+│       └── 002-august-2025/
 │           └── ...
 ```
 

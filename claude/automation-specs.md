@@ -7,16 +7,19 @@ This document contains technical specifications for Claude automation of the sim
 ### Simulation Commands
 
 #### Create Simulation
-```
-claude create simulation "description"
-claude create simulation "non-finality over 3 epochs"
-```
+
+When the user requests to create a new simulation, collect the following information:
+
+- `simulation-name`: a name for the simulation. Sanitize it to camel-case.
+- `description`: a brief description of the simulation.
+
+You can infer this info from their prompt or ask for it directly.
 
 **Implementation:**
-- Create directory: `simulations/{sanitized-name}/runs/`
-- Generate `definition.md` from template
+- Create directory: `simulations/{simulation-name}/runs/`
+- Generate `definition.md` from template with reference to `description`.
 - Open GitHub PR for simulation review
-- Use labels: `type:simulation`, `status:draft`
+- Use labels: `type:simulation`, `simulation:{simulation-name}`
 
 **Template: definition.md**
 ```markdown
@@ -32,66 +35,37 @@ This simulation examines how different Ethereum client implementations handle:
 - {Key behavior 1}
 - {Key behavior 2}
 - {Key behavior 3}
-
-## Simulation Description
-
-### {Phase 1 Name}
-{Description}
-
-### {Phase 2 Name}
-{Description}
-
-## Expected Client Behaviors
-
-### During {Phase 1}
-- {Expected behavior 1}
-- {Expected behavior 2}
-
-### During {Phase 2}
-- {Expected behavior 1}
-- {Expected behavior 2}
-
-## Success Criteria
-
-- {Criterion 1}
-- {Criterion 2}
-- {Criterion 3}
-
-## Measurement Approach
-
-- {Measurement method 1}
-- {Measurement method 2}
 ```
 
 ### Run Commands
 
 #### Start Run
-```
-claude start run "simulation-name"
-claude start run "simulation-name" --duration "2 hours" --clients "lighthouse,prysm"
-claude start run "simulation-name" --clients "lighthouse:4,prysm:3,teku:2"
-```
+
+When the user requests to create a new simulation, collect the following information:
+
+- `simulation-name`: The simulation to run, must match an existing simulation. If it doesn't, give the user a list of existing simulations or an option to create it.
+- `run-name`: a name for the run. Suggest something human readable and descriptive related to the date (e.g. "july-2025") or the reason (e.g. "post-pectra-july-2025").  See the "Run Numbering" section below for how you should format the run name.
+- `clients`: a list of clients to be involved in the run. This can be execution and consensus clients.
+- `start-date`: a loose date as to when the run should start (e.g. can be a specific day or a month, anything is fine).
+- `additional-details`: anything else they'd like to provide. E.g., client weightings, client pairs, specific network conditions, time interval, etc.
+
+You can infer this info from their prompt or ask for it directly.
 
 **Implementation:**
-1. Create branch: `run/{simulation-name}-{YYYY-MM-DD}-{HH-MM}`
-2. Create directory: `simulations/{simulation-name}/runs/run-{XXX}/`
-3. Generate `description.md` from template
+1. Create branch: `run/{simulation-name}-{run-name}`
+2. Create directory: `simulations/{simulation-name}/runs/{run-name}/`
+3. Generate `description.md` from provided information
 4. Open GitHub PR with run tracking template
-5. Use labels: `type:run`, `status:active`, `simulation:{name}`
+5. Use labels: `type:run`, `run:{simulation-name}:{run-name}`
 
 **Template: Run PR Description**
 ```markdown
-# [RUN] {Simulation Name} - {Brief Description}
+# {simulation-name}: Run {run-name}
 
 ## Run Parameters
 - **Simulation:** {simulation-name}
-- **Duration:** {duration}
-- **Start Time:** {planned-start-time}
-- **Clients:** 
-  - Lighthouse: {count} nodes
-  - Prysm: {count} nodes
-  - Teku: {count} nodes
-  - Nimbus: {count} nodes
+- **Start Time:** {start-date}
+- **Clients:** : {clients}
 
 ## Status Checklist
 - [ ] Run parameters defined
@@ -101,30 +75,31 @@ claude start run "simulation-name" --clients "lighthouse:4,prysm:3,teku:2"
 - [ ] Final summary completed
 
 ## Incidents
-{Auto-populated as incidents are created}
+
+{Github link to issues with the tag: `issue:{simulation-name}:{run-name}`}
+
+## Resources
+
+*Provide links for block explorers, metrics, etc*
 
 ## Results Summary
 *To be completed when run finishes*
-
----
-*This PR tracks the complete lifecycle of this simulation run. Incidents will be created as separate issues and linked here.*
 ```
 
 **Template: description.md**
 ```markdown
-# Run {XXX}: {Simulation Name} - {Brief Description}
+# {simulation-name} - {run-name}
 
 ## Run Parameters
 
-**Date:** {YYYY-MM-DD}
-**Duration:** {duration}
-**Start Time:** {HH:MM UTC}
-**End Time:** {HH:MM UTC}
+- **Simulation:** {simulation-name}
+- **Start Time:** {start-date}
+- **Clients:** : {clients}
 
 ## Network Configuration
 
 ### Client Distribution
-{Auto-generated based on --clients parameter}
+{Auto-generated based on clients parameter}
 
 ### Infrastructure
 - **Total Validators:** {calculated}
@@ -133,8 +108,7 @@ claude start run "simulation-name" --clients "lighthouse:4,prysm:3,teku:2"
 - **Client Versions:**
   - Lighthouse v{version}
   - Prysm v{version}
-  - Teku v{version}
-  - Nimbus v{version}
+  - etc.
 
 ## Test Execution
 
@@ -154,7 +128,7 @@ claude start run "simulation-name" --clients "lighthouse:4,prysm:3,teku:2"
 
 ## Incidents Discovered
 
-See the `incidents/` directory for detailed analysis of issues encountered during this run.
+{Github link to issues with the tag: `issue:{simulation-name}:{run-name}`}
 ```
 
 #### Complete Run
@@ -212,9 +186,6 @@ claude create incident "prysm sync delay" --client prysm --run-pr 123
 
 ## Resolution
 *To be completed when incident is resolved*
-
----
-**Labels:** `type:incident`, `client:{name}`, `severity:{level}`, `run:#{pr}`
 ```
 
 ## GitHub Integration
@@ -276,42 +247,19 @@ gh pr edit {number} --add-label "status:complete"
 ## Directory Management
 
 ### Simulation Directory Structure
-```
-simulations/{simulation-name}/
-├── definition.md
-└── runs/
-    ├── run-001/
-    │   ├── description.md
-    │   └── incidents/
-    └── run-002/
-        └── ...
-```
+
+See ./docs/repository-structure.md
 
 ### Run Numbering
 - Auto-increment based on existing runs
-- Format: `run-001`, `run-002`, etc.
+- Format: `000-{run-name}`, `001-{run-name}`, etc.
 - Pad with zeros for sorting
 
 ### Branch Naming
-- Format: `run/{simulation-name}-{YYYY-MM-DD}-{HH-MM}`
-- Sanitize simulation names (lowercase, hyphens)
-- Use UTC timestamps
+- Format: `run/{simulation-name}-{run-name}`
+- Sanitize simulation names (camel-case)
 
 ## File Templates
-
-### Client Distribution Parsing
-Parse `--clients` parameter:
-```
-"lighthouse:4,prysm:3,teku:2" -> 
-- Lighthouse: 4 nodes (44.4%)
-- Prysm: 3 nodes (33.3%) 
-- Teku: 2 nodes (22.2%)
-```
-
-### Timestamp Formatting
-- Use ISO 8601 format: `2024-01-15T14:00:00Z`
-- Display times in UTC
-- Auto-calculate end times based on duration
 
 ## Error Handling
 
@@ -329,17 +277,3 @@ Parse `--clients` parameter:
 - Verify `gh` CLI is installed and authenticated
 - Check git repository status
 - Validate required permissions
-
-## Automation Workflows
-
-### GitHub Actions Integration
-Potential automations:
-- Auto-assign reviewers based on client labels
-- Update run PR when incidents are closed
-- Generate summary reports for completed runs
-- Archive old runs to reduce repo size
-
-### Notification Systems
-- Slack/Discord integration for incident creation
-- Email notifications for critical incidents
-- Status updates for long-running simulations
