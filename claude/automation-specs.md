@@ -10,7 +10,7 @@ This document contains technical specifications for Claude automation of the sim
 
 When the user requests to create a new simulation, collect the following information:
 
-- `simulation-name`: a name for the simulation. Sanitize it to camel-case.
+- `simulation-name`: a name for the simulation. Sanitize it to kebab-case.
 - `description`: a brief description of the simulation.
 
 You can infer this info from their prompt or ask for it directly.
@@ -186,8 +186,9 @@ When the user requests to create an incident, collect the following info:
 - Before starting to make changes, check to see if the user has any uncommitted changes in their git tree. If so, alert them ask them what they'd like to do.
 - You'll frequently find that tags don't existing when you're creating issues and PRs. Create the tags when that happens.
 - Before you make changes to the repo, always make sure you're in the appropriate branch. E.g. don't start implementing a new simulation on the `main` branch.
-- Always use camel-case in tag names. Be very consistent with the use tag names, we need them to match up between PRs and issues.
+- Always use kebab-case in tag names. Be very consistent with the use tag names, we need them to match up between PRs and issues.
 - When creating PRs and issues, sometimes you might be recreating something that was closed. Be sure that you don't mistake a closed PR/issue for a new one that you're supposed to be creating.
+- Use kebab-case whenever you need to decide. No camel-case.
 
 ## GitHub Integration
 
@@ -258,7 +259,7 @@ See ./docs/repository-structure.md
 
 ### Branch Naming
 - Format: `run/{simulation-name}-{run-name}`
-- Sanitize simulation names (camel-case)
+- Sanitize simulation names (kebab-case)
 
 ## File Templates
 
