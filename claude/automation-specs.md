@@ -44,7 +44,7 @@ This simulation examines how different Ethereum client implementations handle:
 When the user requests to create a new simulation, collect the following information:
 
 - `simulation-name`: The simulation to run, must match an existing simulation. If it doesn't, give the user a list of existing simulations or an option to create it.
-- `run-name`: a name for the run. Suggest something human readable and descriptive related to the date (e.g. "july-2025") or the reason (e.g. "post-pectra-july-2025").  See the "Run Numbering" section below for how you should format the run name.
+- `run-name`: a name for the run. Suggest something human readable and descriptive related to the date (e.g. "july-2025") or the reason (e.g. "post-pectra-july-2025").  See the "Run Numbering" section below for how you should format the run name. If the user gives you a run name without the three-digit prefix then add it yourself, based on the next free number.
 - `clients`: a list of clients to be involved in the run. This can be execution and consensus clients.
 - `start-date`: a loose date as to when the run should start (e.g. can be a specific day or a month, anything is fine).
 - `additional-details`: anything else they'd like to provide. E.g., client weightings, client pairs, specific network conditions, time interval, etc.
@@ -60,7 +60,7 @@ You can infer this info from their prompt or ask for it directly.
 
 **Template: Run PR Description**
 ```markdown
-# {simulation-name}: Run {run-name}
+# [RUN] {simulation-name}: {run-name}
 
 ## Run Parameters
 - **Simulation:** {simulation-name}
