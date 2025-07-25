@@ -181,6 +181,10 @@ When the user requests to create an incident, collect the following info:
 *TBC*
 ```
 
+## General Details
+
+Before starting to make changes, check to see if the user has any uncommitted changes in their git tree. If so, alert them ask them what they'd like to do.
+
 ## GitHub Integration
 
 ### Authentication
