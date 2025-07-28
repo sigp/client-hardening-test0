@@ -19,6 +19,7 @@ This repository is designed for use with Claude Code. Claude will help you autom
 - `claude create a new simulation called "non-finality"`
 - `claude create a run for the non-finality sim called "july-2025"`
 - `claude raise an incident that "lighthouse node failed to sync" for the latest run in "non-finality"`
+- `claude complete the july-2025 non-finality run. the overview is that it went well; we had one issue where lighthouse failed to sync, the lighthouse team fixed it in a PR`
 
 ## Documentation
 
