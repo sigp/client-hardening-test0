@@ -14,11 +14,7 @@ simulations/
 │   ├── definition.md
 │   └── runs/
 │       └── run-{XXX}/
-│           ├── description.md
-│           └── incidents/
-│               └── {incident-slug}/
-│                   ├── description.md
-│                   └── [supporting files]
+│           └── description.md
 ```
 
 ## Naming Conventions
@@ -33,10 +29,6 @@ simulations/
 - Zero-pad to 3 digits for proper sorting
 - Auto-increment based on existing runs
 
-### Incident Directories
-- Convert incident titles to slugs: "Lighthouse restart issue" → "lighthouse-restart-issue" 
-- Use lowercase with hyphens
-- Keep under 50 characters if possible
 
 ## File Templates
 
@@ -46,8 +38,6 @@ Template location: In automation-specs.md under "Template: definition.md"
 ### Run description.md  
 Template location: In automation-specs.md under "Template: description.md"
 
-### Incident description.md
-Template location: In automation-specs.md under "Template: Incident Issue"
 
 ## Directory Creation Commands
 
@@ -56,10 +46,7 @@ Template location: In automation-specs.md under "Template: Incident Issue"
 mkdir -p simulations/{simulation-name}/runs
 
 # Create run
-mkdir -p simulations/{simulation-name}/runs/run-{XXX}/incidents
-
-# Create incident
-mkdir -p simulations/{simulation-name}/runs/run-{XXX}/incidents/{incident-slug}
+mkdir -p simulations/{simulation-name}/runs/run-{XXX}
 ```
 
 ## Validation Rules
@@ -67,5 +54,4 @@ mkdir -p simulations/{simulation-name}/runs/run-{XXX}/incidents/{incident-slug}
 Before creating directories:
 1. Check if simulation exists
 2. Determine next run number by listing existing runs
-3. Validate incident slug doesn't conflict with existing incidents
-4. Ensure all parent directories exist
+3. Ensure all parent directories exist

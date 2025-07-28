@@ -9,12 +9,6 @@ simulations/
 │   └── runs/                   # Individual test executions
 │       ├── 001-july-2025/
 │       │   ├── description.md  # Detailed run parameters
-│       │   └── incidents/      # Issues discovered during run
-│       │       ├── incident-title/
-│       │       │   ├── description.md
-│       │       │   └── [logs, screenshots, etc.]
-│       │       └── another-incident/
-│       │           └── ...
 │       └── 002-august-2025/
 │           └── ...
 ```
@@ -31,12 +25,7 @@ Each simulation begins with a clear specification that includes:
 ### Runs (`runs/`)
 Individual executions of a simulation, each containing:
 - **Description** (`description.md`): Specific parameters including client distribution, network topology, timing, and environmental conditions
-- **Incidents** (`incidents/`): Directory containing individual issues discovered during the run, where each incident has its own subdirectory with:
-  - Issue description and impact assessment
-  - Root cause analysis
-  - Resolution steps taken
-  - Client-specific behaviors observed
-  - Supporting materials (logs, screenshots, network captures, etc.)
+- **Incidents**: Issues discovered during the run are tracked as GitHub issues with appropriate labels linking them to the specific run
 
 ## Example
 
