@@ -35,8 +35,10 @@ This simulation examines how different Ethereum client implementations handle:
 - Recovery mechanisms when finality resumes
 
 ### Actual Summary
-To be completed after run
+The simulation ran successfully overall. Client implementations demonstrated good resilience during extended non-finality periods. One minor issue was identified where Lighthouse failed to sync, but this was quickly resolved by the Lighthouse team with a bug fix.
 
 ## Incidents Discovered
 
-Github link to issues with the tag: `issue:non-finality:july-2025`
+[Issues tagged with incident:non-finality:july-2025](https://github.com/sigp/client-hardening-test0/issues?q=label%3Aincident%3Anon-finality%3Ajuly-2025)
+
+- **Issue #4:** Lighthouse node failed to sync - resolved by Lighthouse team with minor bug fix
